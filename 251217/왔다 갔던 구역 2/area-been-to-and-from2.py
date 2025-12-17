@@ -7,10 +7,10 @@ for _ in range(n):
     dir.append(di)
 
 # Please write your code here.
-arr = [0] * 30
+arr = [0] * 2000
 # arr = [0] * 2000
 
-cur_pos = 15
+cur_pos = 1000
 prev_dir = None
 # cur_pos = 1000
 
