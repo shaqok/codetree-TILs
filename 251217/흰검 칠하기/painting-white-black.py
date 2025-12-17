@@ -17,8 +17,8 @@ prev_dir = None
 
 for cur_move, cur_dir in zip(x, dir):
     if cur_dir == 'R':
-        if prev_dir == 'R':
-            cur_pos += 1
+        # if prev_dir == 'R':
+        #     cur_pos += 1
 
         for i in range(cur_pos, cur_pos + cur_move):
             cur_color, cur_black_cnt, cur_white_cnt = arr[i]
@@ -32,8 +32,8 @@ for cur_move, cur_dir in zip(x, dir):
         cur_pos = cur_pos + cur_move - 1
         prev_dir = cur_dir
     else:
-        if prev_dir == 'L':
-            cur_pos -= 1
+        # if prev_dir == 'L':
+        #     cur_pos -= 1
 
         for i in range(cur_pos, cur_pos - cur_move, -1):
             cur_color, cur_black_cnt, cur_white_cnt = arr[i]
@@ -53,3 +53,4 @@ white_cnt = len([tile for tile in arr if tile[0] == 2])
 grey_cnt = len([tile for tile in arr if tile[0] == 3])
 
 print(white_cnt, black_cnt, grey_cnt)
+
