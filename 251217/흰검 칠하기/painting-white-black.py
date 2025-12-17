@@ -10,7 +10,7 @@ for num, direction in commands:
 k = n * max(x)
 
 # color: 0 - None, 1 - Black, 2 - White, 3 - Grey
-arr = [(0, 0, 0)] * (2 * k)
+arr = [(0, 0, 0)] * (2 * (k + 1))
 
 cur_pos = k // 2
 prev_dir = None
