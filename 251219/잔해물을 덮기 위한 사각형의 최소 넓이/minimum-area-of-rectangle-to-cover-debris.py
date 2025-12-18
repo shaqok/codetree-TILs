@@ -17,20 +17,39 @@ for k in range(2):
         for j in range(cur_y1, cur_y2):
             grid[i][j] = k + 1
 
-max_width = max_height = 0
 
 cur_x1, cur_x2 = x1[0] + 1000, x2[0] + 1000
 cur_y1, cur_y2 = y1[0] + 1000, y2[0] + 1000
 
+# for i in range(x1[1] + 1000, x2[1] + 1000):
+#     # for j in range(cur_y1, cur_y2):
+#     print(grid[i][cur_y1:cur_y2])
+
+min_height = cur_x1
+max_height = cur_x1
+
+max_width_len = 0
+
 for i in range(cur_x1, cur_x2):
-    cur_width = 0
-    cur_height = 0
+    width_count = 0
+    cur_min_width = cur_y1
+    cur_max_width = cur_y1
     for j in range(cur_y1, cur_y2):
-        if grid[i][j] == 1:
-            cur_width += 1
-            cur_height = 1
+        if width_count == 0 and grid[i][j] == 1:
+            cur_min_width = j
+            cur_max_width = j
+            width_count += 1
+        elif grid[i][j] == 1:
+            cur_max_width = j
+            width_count += 1
+    if 1 in set(grid[i]):
+        max_height = i
+    
+    max_width_len = max(max_width_len, (cur_max_width - cur_min_width + 1))
 
-    max_width = max(max_width, cur_width)
-    max_height += cur_height
+print(max_width_len * (max_height - min_height + 1))
 
-print(max_width * max_height)
+'''
+5 5 15 15
+3 9 18 12
+'''
