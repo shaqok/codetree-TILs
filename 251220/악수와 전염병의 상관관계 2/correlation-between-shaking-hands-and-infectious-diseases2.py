@@ -15,32 +15,37 @@ infected_info 배열 필요 개발자 index 순으로 각 악수를 체크:
 infected_info[P][1] = '1' 로 초기세팅
 
 handshakes를 순회하며 infected_info에서 개발자별 기록 수정
+! 감염된다면 K만큼 전염 가능
 ! 악수를 한 양쪽의 K를 차감해야 함
 ! 이미 전염된 개발자끼리의 악수도 K 차감    
 '''
-infected_info = [(K, '0')] * (N + 1)
+infected_info = [(0, '0')] * (N + 1)
 infected_info[P] = (K, '1')
 
 handshakes = sorted(handshakes, key=lambda x: x[0])
-
 for handshake in handshakes:
     t, x, y = handshake
-    # x, y 둘 다 K가 0인 경우 -> skip
-    # 둘 다 감염이 아닌 경우 -> skip
-    # 하나라도 K가 0이 아닌 경우
-    # 만약 x가 감염인데 0이 아닌 경우 -> y = '1'
-    # 만약 x가 감염인데 0인 경우 -> 변화없음
+
     k_x, i_x = infected_info[x]
     k_y, i_y = infected_info[y]
+    prev_i_x, prev_i_y = i_x, i_y
 
-    # 이미 둘 다 k가 0이거나 감염/비감염상태가 같다면 생략 가능
+    # 이미 둘 다 k가 0인 경우 생략 가능
     if k_x == k_y == 0: pass
     elif (i_x == '1' and k_x > 0) or (i_y == '1' and k_y > 0):
         i_x = i_y = '1'
 
     # 둘 다 k 차감
-    if k_x > 0: k_x -= 1
-    if k_y > 0: k_y -= 1
+    if prev_i_x == '0' and i_x == '1':
+        k_x = 2
+    elif prev_i_x == '1' and k_x > 0:
+        k_x -= 1
+
+    if prev_i_y == '0' and i_y == '1':
+        k_y = 2
+    elif prev_i_y == '1' and k_y > 0:
+        k_y -= 1
+
     infected_info[x] = (k_x, i_x)
     infected_info[y] = (k_y, i_y)
 
