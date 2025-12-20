@@ -51,15 +51,11 @@ while t or d or t_b or d_b:
             t_b.pop()
             d_b.pop()
     
-    if cur_pos_a == cur_pos_b:
-        if not prev_met:
-            met_cnt += 1
-            prev_met = True
+    if cur_pos_a == cur_pos_b and not prev_met:
+        met_cnt += 1
+        prev_met = True
     elif cur_pos_a != cur_pos_b and prev_met:
         prev_met = False
-
-    # timestamp += 1
-    # print(cur_pos_a, cur_pos_b, timestamp)
     
 
 print(met_cnt)
