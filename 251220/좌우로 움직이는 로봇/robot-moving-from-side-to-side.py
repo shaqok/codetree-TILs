@@ -23,7 +23,7 @@ for _ in range(m):
 
 t, d, t_b, d_b = t[::-1], d[::-1], t_b[::-1], d_b[::-1]
 cur_pos_a = cur_pos_b = 0
-prev_met = False
+prev_a = prev_b = None
 met_cnt = 0
 timestamp = 0
 
@@ -51,11 +51,13 @@ while t or d or t_b or d_b:
             t_b.pop()
             d_b.pop()
     
-    if cur_pos_a == cur_pos_b and not prev_met:
+    # if prev_a == None and prev_b == None:
+    #     prev_a = cur_pos_a
+    #     prev_b = cur_pos_b
+    if cur_pos_a == cur_pos_b and (prev_a != None and prev_b != None and prev_a != prev_b):
         met_cnt += 1
-        prev_met = True
-    else:
-        prev_met = False
+    prev_a = cur_pos_a
+    prev_b = cur_pos_b
     
 
 print(met_cnt)
