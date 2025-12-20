@@ -2,8 +2,12 @@ n = int(input())
 arr = [int(input()) for _ in range(n)]
 
 '''
-숫자가 같을 경우 count += 1
+
 '''
+
+if n == 1:
+    print(1)
+
 max_freq = 0
 
 prev_i = 0
