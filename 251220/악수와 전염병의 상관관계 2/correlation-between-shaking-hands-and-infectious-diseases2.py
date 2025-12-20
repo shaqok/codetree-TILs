@@ -35,14 +35,8 @@ for handshake in handshakes:
 
     # 이미 둘 다 k가 0이거나 감염/비감염상태가 같다면 생략 가능
     if (k_x == k_y == 0) or (i_x == i_y): pass
-    elif i_x == '1':
-        if k_x == 0: pass
-        else:
-            i_y = '1'
-    elif i_y == '1':
-        if k_y == 0: pass
-        else:
-            i_x = '1'
+    elif (i_x == '1' and k_x > 0) or (i_y == '1' and k_y > 0):
+        i_x = i_y = '1'
 
     # 둘 다 k 차감
     if k_x > 0: k_x -= 1
