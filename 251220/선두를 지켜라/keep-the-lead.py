@@ -52,7 +52,7 @@ for i in range(MAX_TIME):
             t2.pop()
             v2.pop()
     # 선두 계산
-    if i == 0:
+    if not cur_first_place:
         if cur_pos_1 > cur_pos_2:
             cur_first_place = player_A
         elif cur_pos_1 < cur_pos_2:
