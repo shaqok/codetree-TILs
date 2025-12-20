@@ -30,8 +30,8 @@ for handshake in handshakes:
     k_y, i_y = infected_info[y]
     prev_i_x, prev_i_y = i_x, i_y
 
-    # 이미 둘 다 k가 0인 경우 생략 가능
-    if k_x == k_y == 0: pass
+    # 이미 둘 다 k가 0이거나 감염/비감염상태가 같다면 생략 가능
+    if (k_x == k_y == 0) or (i_x == i_y): pass
     elif (i_x == '1' and k_x > 0) or (i_y == '1' and k_y > 0):
         i_x = i_y = '1'
 
@@ -45,9 +45,10 @@ for handshake in handshakes:
         k_y = 2
     elif prev_i_y == '1' and k_y > 0:
         k_y -= 1
-
     infected_info[x] = (k_x, i_x)
     infected_info[y] = (k_y, i_y)
+
+    # print(infected_info)
 
 
 result = [info[1] for info in infected_info[1:]]
