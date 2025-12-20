@@ -34,7 +34,7 @@ for handshake in handshakes:
     k_y, i_y = infected_info[y]
 
     # 이미 둘 다 k가 0이거나 감염/비감염상태가 같다면 생략 가능
-    if (k_x == k_y == 0) or (i_x == i_y): pass
+    if k_x == k_y == 0: pass
     elif (i_x == '1' and k_x > 0) or (i_y == '1' and k_y > 0):
         i_x = i_y = '1'
 
