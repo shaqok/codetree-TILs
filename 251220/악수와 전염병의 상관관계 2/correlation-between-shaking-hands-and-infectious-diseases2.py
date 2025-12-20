@@ -19,7 +19,7 @@ handshakes를 순회하며 infected_info에서 개발자별 기록 수정
 ! 악수를 한 양쪽의 K를 차감해야 함
 ! 이미 전염된 개발자끼리의 악수도 K 차감    
 '''
-infected_info = [(0, '0')] * (N + 1)
+infected_info = [(2, '0')] * (N + 1)
 infected_info[P] = (K, '1')
 
 handshakes = sorted(handshakes, key=lambda x: x[0])
