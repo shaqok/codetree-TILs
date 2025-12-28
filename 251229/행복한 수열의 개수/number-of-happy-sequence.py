@@ -23,7 +23,7 @@ for i in range(n):
 
     # col
     max_happy_cnt = 0
-    happy_cnt = 0
+    happy_cnt = 1
     for j in range(1, n):
         # consecutive same values
         if grid[j][i] != grid[j-1][i]:
