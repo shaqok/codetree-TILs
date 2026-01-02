@@ -23,8 +23,8 @@ def get_score(x, y, k, l):
 
 max_sum = 0
 
-for i in range(n):
-    for j in range(n):
+for i in range(2, n):
+    for j in range(1, n):
         for k in range(1, n):
             for l in range(1, n):
                 max_sum = max(max_sum, get_score(i, j, k, l))
