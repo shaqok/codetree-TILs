@@ -26,5 +26,8 @@ for i in range(n):
                     max_num = max(max_num, cur_sum)
 
 
-print(max_num)
+if max_num == 0:
+    print(-1)
+else:
+    print(max_num)
                     
