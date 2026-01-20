@@ -13,7 +13,8 @@ for (let k = 1; k < R-1; k++) {
             for (let m = l + 1; m < C; m++) {
                 let firstMove = grid[k][l];
                 let secondMove = grid[n][m];
-                if (grid[0][0] !== firstMove && firstMove !== secondMove && (n !== R-1 && m !== C-1)) {
+                if (grid[0][0] !== firstMove && firstMove !== secondMove 
+                    && secondMove !== grid[R-1][C-1] && (n !== R-1 && m !== C-1)) {
                     total_cnt++;
                 }
             }
