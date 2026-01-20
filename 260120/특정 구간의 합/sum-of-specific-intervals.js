@@ -10,5 +10,5 @@ for (let [start, end] of queries) {
     for (let i = start-1; i < end; i++) {
         sum += A[i];
     }
-    console.log(sum)''
+    console.log(sum);
 }
