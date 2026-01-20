@@ -13,22 +13,26 @@ const LEFT = 0;
 const RIGHT = 1;
 
 function shift(row, dir) {
-    let newRow = building[row];
-    console.log(newRow)
-    // if (dir === LEFT) {
-    //     // 첫번째 값을 맨뒤로 삽입
-    //     let val = newRow.shift();
-    //     newRow.push(val);
-    // } else {
-    //     let val = newRow.pop();
-    //     newRow.unshift(val);
-    // }
-    return newRow;
+    if (dir === LEFT) {
+        // 첫번째 값을 맨뒤로 삽입
+        let temp = building[row][0];
+        for (let col = 0; col < m-1; col++) {
+            building[row][col] = building[row][col+1];
+        }
+        building[row][m-1] = temp;
+    } else {
+        // 맨 뒤의 값을 첫번째에 삽입
+        let temp = building[row][m-1];
+        for (let col = m-1; col >= 1; col--) {
+            building[row][col] = building[row][col-1];
+        }
+        building[row][0] = temp;        
+    }
 }
 
 function hasMatch(row1, row2) {
     for (let i = 0; i < m; i++) {
-        if (row1[i] === row2[i]) return true;
+        if (building[row1][i] === building[row2][i]) return true;
     }
     return false;
 }
@@ -43,7 +47,7 @@ function simulate(startRow, startDir) {
     startDir = flip(startDir);
 
     // check upper
-    for (let row = startRow, dir = startDir; row >= 1; row--) {
+    for (let row = startRow, dir = startDir; row-1 >= 0; row--) {
         if (hasMatch(row, row-1)) {
             shift(row - 1, dir);
             dir = flip(dir);
@@ -51,7 +55,7 @@ function simulate(startRow, startDir) {
     }
 
     // check down
-    for (let row = startRow, dir = startDir; row <= n-1; row++) {
+    for (let row = startRow, dir = startDir; row+1 < n; row++) {
         if (hasMatch(row, row+1)) {
             shift(row + 1, dir);
             dir = flip(dir);
@@ -60,9 +64,9 @@ function simulate(startRow, startDir) {
 }
 
 winds.forEach(([r, d]) => {
-    simulate(Number(r), d === 'L' ? LEFT : RIGHT)
+    simulate(r - 1, d === 'L' ? RIGHT : LEFT)
 });
 
 for (let row = 0; row < n; row++) {
-    console.log(building[row].slice(1).join(' '));
+    console.log(building[row].join(' '));
 }
