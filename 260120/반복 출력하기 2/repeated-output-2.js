@@ -12,4 +12,4 @@ function recur(n) {
     recur(n-1);
 }
 
-recur(4);
+recur(n);
