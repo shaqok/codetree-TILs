@@ -11,41 +11,47 @@ const [r, c] = input[1 + n].split(' ').map(Number);
  *  현재 길이가 n 보다 작은 경우 0으로 채우기
  */
 
-// 범위 계산 - 행
+const nextGrid = Array(n).fill().map(() => Array(n).fill(0));
 let newR = r - 1;
 let newC = c - 1;
-let power = grid[newR][newC] - 1;
 
-for (let i = newR - power; i < newR + power + 1; i++) {
-    if (0 <= i && i < n) {
-        grid[i][newC] = -1
-    }
-}
-// 범위 계산 - 열
-for (let i = newC - power; i < newC + power + 1; i++) {
-    if (0 <= i && i < n) {
-        grid[newR][i] = -1
-    }
+function inBombRange(x, y, centerX, centerY, bombRange) {
+    return (x === centerX || y === centerY) && 
+           (Math.abs(x - centerX) + Math.abs(y - centerY) < bombRange);
 }
 
-// 2. 삭제 처리 -> 열로 계산하면서 -1인 곳은 제외하고 새로 값을 처리
-//  현재 길이가 n 보다 작은 경우 0으로 채우기
-for (let i = 0; i < n; i++) {
-    let temp = [];
-    for (let j = n-1; j >= 0; j--) {
-        if (grid[j][i] !== -1) {
-            temp.push(grid[j][i]);
+function bomb(centerX, centerY) {
+    const bombRange = grid[centerX][centerY];
+
+    // 0으로 처리
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (inBombRange(i, j, centerX, centerY, bombRange)) {
+                grid[i][j] = 0;
+            }
+        }   
+    }
+
+    // nextGrid에 변화 저장
+    for (let j = 0; j < n; j++) {
+        let nextRow = n - 1;
+        for (let i = n - 1; i >= 0; i--) {
+            if (grid[i][j] !== 0) {
+                nextGrid[nextRow][j] = grid[i][j];
+                nextRow -= 1;
+            }
         }
     }
 
-    for (let k = temp.length; k < n; k++) {
-        temp.push(0);
-    }
-
-    for (let k = n-1; k >= 0; k--) {
-        grid[k][i] = temp[n-k-1];
+    // grid 로 다시 저장
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            grid[i][j] = nextGrid[i][j];
+        }
     }
 }
+
+bomb(newR, newC);
 
 for (let row of grid) {
     console.log(row.join(" "));
