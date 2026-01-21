@@ -2,7 +2,7 @@ const fs = require("fs");
 const input = fs.readFileSync(0).toString().trim().split('\n');
 
 const n = Number(input[0]);
-const grid = input.slice(1, 1 + n).map(line => line.trim().split(' ').map(Number));
+const grid = input.slice(1, 1 + n).map(line => line.split(' ').map(Number));
 const [r, c] = input[1 + n].split(' ').map(Number);
 
 /**
@@ -35,20 +35,11 @@ function bomb(centerX, centerY) {
     // nextGrid에 변화 저장
     for (let j = 0; j < n; j++) {
         let nextRow = n - 1;
-        for (let i = n - 1; i >= 0; i--) {
-            if (grid[i][j]) {
-                nextGrid[nextRow][j] = grid[i][j];
-                nextRow -= 1;
-            }
-        }
+        for (let i =)
     }
 
     // grid 로 다시 저장
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            grid[i][j] = nextGrid[i][j];
-        }
-    }
+
 }
 
 bomb(newR, newC);
