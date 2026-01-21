@@ -42,7 +42,7 @@ for (let i = 0; i < n; i++) {
         temp.push(0);
     }
 
-    for (let k = 0; k < n; k++) {
+    for (let k = n-1; k >= 0; k--) {
         grid[k][i] = temp[n-k-1];
     }
 }
