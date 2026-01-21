@@ -36,7 +36,7 @@ function bomb(centerX, centerY) {
     for (let j = 0; j < n; j++) {
         let nextRow = n - 1;
         for (let i = n - 1; i >= 0; i--) {
-            if (grid[i][j] !== 0) {
+            if (grid[i][j]) {
                 nextGrid[nextRow][j] = grid[i][j];
                 nextRow -= 1;
             }
